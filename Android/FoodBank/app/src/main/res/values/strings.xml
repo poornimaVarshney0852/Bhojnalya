@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">FoodBank</string>
-    <string name="title_home">Home</string>
-    <string name="title_sort">Sort</string>
-    <string name="title_notifications">MyAccount</string>
-    <string name="title_history">History</string>
-</resources>
