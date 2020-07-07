@@ -8,9 +8,25 @@
         android:title="@string/title_home"/>
 
     <item
-        android:id="@+id/navigation_sort"
+        android:id="@+id/navigation_filter"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Sort"/>
+        android:title="Filter By">
+    <menu>
+        <item
+            android:id="@+id/by_location"
+            android:title="Location"/>
+        <item
+            android:id="@+id/by_requested_feed"
+            android:title="Food Request Feeds"
+            />
+        <item
+            android:id="@+id/by_donation_feed"
+            android:title="Food Donation Feed"
+            />
+
+    </menu>
+    </item>
+
 
     <item
         android:id="@+id/navigation_history"
