@@ -1,15 +1,13 @@
 package com.example.bhojnalya.ui.home;
 
 import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,17 +20,14 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.libraries.places.api.net.PlacesClient;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
 public class FormRequest extends AppCompatActivity {
     ImageView imageLocation;
-    TextView textViewLocation;
-    PlacesClient placesClient;
+    EditText textViewLocation;
 
     FusedLocationProviderClient  fusedLocationProviderClient;
 
