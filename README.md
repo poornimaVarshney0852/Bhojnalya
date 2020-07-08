@@ -1,1 +1,2 @@
 # Bhojnalya
+ With a growing population, we cannot afford to waste any more food or resources. Yet, a lot of people throw away leftover fresh food after an event or even regular meals. Restaurants, hotels, food stores, and weddings throw away a ton of food frequently. Simple yet unique and new mobile app ideas like a food donation app can help curb this problem. It will connect the food donors and organizations that collect food for the needy. NGOs or government organizations can make such apps ideas to curb hunger.
