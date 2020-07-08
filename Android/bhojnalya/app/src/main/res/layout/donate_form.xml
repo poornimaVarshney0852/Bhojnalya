@@ -8,6 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
         <CheckBox
             android:id="@+id/checkBox_donation_pick"
             style="@android:style/Widget.Holo.Light.CompoundButton.CheckBox"

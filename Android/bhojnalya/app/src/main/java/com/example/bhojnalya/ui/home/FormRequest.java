@@ -7,7 +7,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ import java.util.Locale;
 
 public class FormRequest extends AppCompatActivity {
     ImageView imageLocation;
-    EditText textViewLocation;
+    TextView textViewLocation;
 
     FusedLocationProviderClient  fusedLocationProviderClient;
 
