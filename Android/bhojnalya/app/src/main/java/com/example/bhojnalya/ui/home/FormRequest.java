@@ -26,6 +26,8 @@ import com.example.bhojnalya.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -39,8 +41,6 @@ import java.util.Locale;
 import java.util.HashMap;
 
 public class FormRequest extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-//    ImageButton imageLocation;
-//    ImageButton imageLocation;
     private EditText foodDiscription,quantity;
     private CheckBox pickup ;
     private TextView location;
@@ -48,7 +48,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
     private Button submit;
     ImageView imageLocation;
     TextView textViewLocation;
-    Spinner quantityMeasureSpninner, donationSpinner, vegSpinner, cookedSpinner;
+    Spinner quantityMeasureSpinner, donationSpinner, vegSpinner, cookedSpinner;
 
     FusedLocationProviderClient  fusedLocationProviderClient;
     ArrayAdapter<CharSequence> adapter;
@@ -64,7 +64,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
         location = findViewById(R.id.textView_sign_location);
         submit = findViewById(R.id.button_donation_submit);
         donationSpinner = findViewById(R.id.spinner_donation_donation);
-        quantityMeasureSpninner = findViewById(R.id.spinner_donation_amount);
+        quantityMeasureSpinner = findViewById(R.id.spinner_donation_amount);
         vegSpinner = findViewById(R.id.spinner_veg_non_veg);
         cookedSpinner = findViewById(R.id.spinner_donation_cooked);
 
@@ -76,8 +76,8 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
 
         adapter = ArrayAdapter.createFromResource(this, R.array.measurements, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        quantityMeasureSpninner.setAdapter(adapter);
-        quantityMeasureSpninner.setOnItemSelectedListener(this);
+        quantityMeasureSpinner.setAdapter(adapter);
+        quantityMeasureSpinner.setOnItemSelectedListener(this);
 
         adapter = ArrayAdapter.createFromResource(this, R.array.cooked, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -95,6 +95,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(FormRequest.this);
 
+        // Get Current Location
         imageLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +129,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 hm.put("UserType",donationSpinner.getSelectedItem().toString());
                 hm.put("Cooked_UnCooked",cookedSpinner.getSelectedItem().toString());
                 hm.put("Veg_NonVeg",vegSpinner.getSelectedItem().toString());
-                hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpninner.getSelectedItem().toString());
+                hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpinner.getSelectedItem().toString());
                 hm.put("feedAccepted","no");
                 hm.put("self_d_p","0");
                 if (Transport.equals("yes")) {
@@ -137,7 +138,8 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                     hm.put("transport", "no");
                 }
 
-                FirebaseDatabase.getInstance().getReference().child("Feed").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid()).child("Feed").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(FormRequest.this, "Successfully added", Toast.LENGTH_SHORT).show();
@@ -179,7 +181,12 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String str = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), str, Toast.LENGTH_SHORT).show();
+        if(str.equals("Donation")){
+            pickup.setText("Self Delivery ?");
+        }
+        else if(str.equals("Request")){
+            pickup.setText("Self Pick Up ?");
+        }
     }
 
     @Override
