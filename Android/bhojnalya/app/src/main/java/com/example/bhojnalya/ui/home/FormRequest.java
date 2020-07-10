@@ -119,6 +119,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,6 +130,8 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 hm.put("Cooked_UnCooked",cookedSpinner.getSelectedItem().toString());
                 hm.put("Veg_NonVeg",vegSpinner.getSelectedItem().toString());
                 hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpinner.getSelectedItem().toString());
+                hm.put("feedAccepted","no");
+                hm.put("self_d_p","0");
                 if (Transport.equals("yes")) {
                     hm.put("transport", "yes");
                 } else {

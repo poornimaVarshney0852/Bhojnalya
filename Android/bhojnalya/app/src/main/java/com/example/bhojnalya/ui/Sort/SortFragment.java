@@ -21,7 +21,7 @@ public class SortFragment extends Fragment {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(SortViewModel.class);
         View root = inflater.inflate(R.layout.fragment_sort, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
+        final TextView textView = root.findViewById(R.id.transportDetailButton);
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
