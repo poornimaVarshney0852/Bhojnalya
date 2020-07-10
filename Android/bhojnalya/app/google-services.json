@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "588970642332",
+    "firebase_url": "https://foodbank-6d369.firebaseio.com",
+    "project_id": "foodbank-6d369",
+    "storage_bucket": "foodbank-6d369.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588970642332:android:ecc1ab69b8e05c16f19659",
+        "android_client_info": {
+          "package_name": "com.example.foodbank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588970642332-9hdv9los53p7pfvtsrqrt1nptjib7c2t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.foodbank",
+            "certificate_hash": "24217f624ed8e389ca2e7d4644e2fa814df2c6dd"
+          }
+        },
+        {
+          "client_id": "588970642332-bqoapu38bf1efg4e0ih4bqv7hsb4ukpk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCT2ntw9tjpBHXEdI4R179rdobkf_GQPOE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588970642332-bqoapu38bf1efg4e0ih4bqv7hsb4ukpk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
