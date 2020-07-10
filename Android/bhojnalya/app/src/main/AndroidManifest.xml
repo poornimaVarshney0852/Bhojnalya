@@ -19,6 +19,8 @@
             android:value="AIzaSyCF3T5_Dq_InPlqodsfjNZFvpra2WoG6YA" />
 
         <activity android:name="com.example.bhojnalya.ui.home.FormRequest" />
+        <activity android:name=".NewUser"/>
+        <activity android:name=".login"/>
         <activity
             android:name="com.example.bhojnalya.MainActivity"
             android:label="@string/app_name">
