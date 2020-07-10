@@ -1,10 +1,13 @@
 package com.example.bhojnalya.ui.home;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,41 +18,48 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bhojnalya.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+public class HomeFragment extends Fragment  {
+    private DatabaseReference ref;
+    private FirebaseRecyclerOptions<HomeViewModel> options;
+    private FirebaseRecyclerAdapter<HomeViewModel, FeedAdapter.FeedViewHolder> adapter;
     private FloatingActionButton addRequestbutton;
     private RecyclerView recyclerView;
     private FeedAdapter feedAdapter;
+    private int position=-1;
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-//
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
         addRequestbutton = root.findViewById(R.id.add_request_button);
         recyclerView = root.findViewById(R.id.recycler);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+//        //To print latest data first from firebase
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
+        linearLayoutManager.setReverseLayout(false);
+
+      //end here to print latest data first from firebase
+
+        recyclerView.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
                         .build();
 
         feedAdapter = new FeedAdapter(options);
         recyclerView.setAdapter(feedAdapter);
+
+
+
 
 
 
@@ -66,7 +76,10 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onStart() {
+
         super.onStart();
         feedAdapter.startListening();
     }
+
+
 }

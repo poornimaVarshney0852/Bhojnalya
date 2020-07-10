@@ -229,6 +229,5 @@
             app:layout_constraintStart_toEndOf="@+id/imageView_location"
             app:layout_constraintTop_toBottomOf="@+id/checkBox_donation_pick" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

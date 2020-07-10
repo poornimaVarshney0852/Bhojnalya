@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="550dp"
+    android:layout_gravity="center"
+    android:id="@+id/container1"
+    android:background="@color/PowderBlue"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Details"
+        android:background="@color/DarkSeaGreen"
+        android:textSize="30dp"
+        android:textColor="@color/DarkRed"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type Of Feed:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type Of Feed:"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"
+        android:id="@+id/userType"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description:"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"
+        android:id="@+id/description"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Veg or Non-Veg:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type Of Feed:"
+        android:id="@+id/veg_non_veg"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quantity:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quantity:"
+        android:id="@+id/quantity"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cooked or Un-Cooked:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cooked or uncooked:"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"
+        android:id="@+id/cooked"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type Of Feed:"
+        android:id="@+id/location"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="On door pick-up?:"
+        android:textSize="18dp"
+        android:textColor="@color/Black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pickup"
+        android:id="@+id/transport"
+        android:textSize="14dp"
+        android:textColor="@color/Gray"/>
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Transport by Self ?"
+    android:textSize="18dp"
+    android:textColor="@color/Black"
+    android:id="@+id/selfTransport"/>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/yesCheck"
+            android:text="Yes"
+            android:textSize="14dp"
+            android:textColor="@color/Gray"
+            android:onClick="checkButton"/>
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/noCheck"
+            android:text="No"
+            android:textSize="14dp"
+            android:textColor="@color/Gray"
+            android:onClick="checkButton"/>
+    </RadioGroup>
+
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/Green"
+        android:text="Accept!"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:id="@+id/accept"
+        android:layout_marginTop="20dp"/>
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Will Deliver?"-->
+<!--        android:background="@color/Orange"-->
+<!--        android:id="@+id/transportButton"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"/>-->
+
+
+
+</LinearLayout>
