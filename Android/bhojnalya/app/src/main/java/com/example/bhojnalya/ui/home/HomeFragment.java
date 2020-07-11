@@ -21,6 +21,7 @@ import com.example.bhojnalya.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,7 +44,7 @@ public class HomeFragment extends Fragment  {
         addRequestbutton = root.findViewById(R.id.add_request_button);
         recyclerView = root.findViewById(R.id.recycler);
 
-//        //To print latest data first from firebase
+        //To print latest data first from firebase
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
         linearLayoutManager.setReverseLayout(false);
 
@@ -52,7 +53,7 @@ public class HomeFragment extends Fragment  {
         recyclerView.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed"), HomeViewModel.class)
                         .build();
 
         feedAdapter = new FeedAdapter(options);

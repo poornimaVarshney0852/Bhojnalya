@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(firebaseAuth.getInstance() == null){
+        if(firebaseAuth.getInstance().getUid() == null){
             Intent intent = new Intent(this,login.class);
             startActivity(intent);
         }

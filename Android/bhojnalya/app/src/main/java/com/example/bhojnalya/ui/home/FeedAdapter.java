@@ -5,6 +5,7 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bhojnalya.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -40,10 +42,13 @@ public class FeedAdapter extends FirebaseRecyclerAdapter<HomeViewModel, FeedAdap
     @Override
     protected void onBindViewHolder(@NonNull FeedViewHolder holder, final int position, @NonNull HomeViewModel model) {
 
-        holder.description.setText(model.getFoodDiscription());
-        holder.location.setText(model.getLocation());
-        holder.transport.setText(model.getTransport());
-        holder.userType.setText(model.getUserType());
+
+            holder.description.setText(model.getFoodDiscription());
+            holder.location.setText(model.getLocation());
+            holder.transport.setText(model.getTransport());
+            holder.userType.setText(model.getUserType());
+        Log.d("user id"," user id of feeds"+model.getUserId());
+        Log.d("user id"," user id of self = "+model.getSelf_d_p());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

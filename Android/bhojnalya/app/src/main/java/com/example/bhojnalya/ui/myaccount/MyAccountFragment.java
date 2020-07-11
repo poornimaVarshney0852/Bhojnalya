@@ -32,7 +32,7 @@ public class MyAccountFragment extends Fragment {
         final TextView textView = root.findViewById(R.id.text_notifications);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        textView.setText("user = ");
+        textView.setText("user = "+user.getUid());
 
         logoutButton = root.findViewById(R.id.logout);
         logoutButton.setOnClickListener(new View.OnClickListener() {

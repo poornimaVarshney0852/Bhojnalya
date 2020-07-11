@@ -1,7 +1,5 @@
 package com.example.bhojnalya.ui.home;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class HomeViewModel extends ViewModel {
@@ -15,6 +13,8 @@ public class HomeViewModel extends ViewModel {
     String Veg_NonVeg;
     String self_d_p;
     String feedAccepted;
+    String userId;
+
 
 
     public HomeViewModel() {
@@ -92,4 +92,8 @@ public class HomeViewModel extends ViewModel {
     public void setTransport(String transport) {
         this.transport = transport;
     }
+
+    public String getUserId() { return userId; }
+
+    public void setUserId(String userId) { this.userId = userId; }
 }
