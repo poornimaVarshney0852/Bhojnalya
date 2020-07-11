@@ -21,6 +21,7 @@ import com.example.bhojnalya.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -52,14 +53,14 @@ public class HomeFragment extends Fragment  {
         recyclerView.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
                         .build();
 
         feedAdapter = new FeedAdapter(options);
         recyclerView.setAdapter(feedAdapter);
 
 
-
+//.child().child("Feed").orderByChild("feedAccepted").equalTo("no")
 
 
 

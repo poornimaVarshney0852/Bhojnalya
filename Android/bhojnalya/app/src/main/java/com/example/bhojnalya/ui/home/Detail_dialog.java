@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bhojnalya.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,7 +61,7 @@ public class Detail_dialog extends AppCompatActivity {
         feedId = getIntent().getExtras().get("id").toString();
 //        feedPos = (int)getIntent().getExtras().get("feedPos");
 
-        reff = FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId);
+        reff = FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Feed").child(feedId);
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -90,10 +91,10 @@ public class Detail_dialog extends AppCompatActivity {
                     acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("feedAccepted").setValue("yes");
-                            FragmentManager fm = getSupportFragmentManager();
+                            FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Feed").child(feedId).child("feedAccepted").setValue("yes");
+                          //  FragmentManager fm = getSupportFragmentManager();
                             Intent intent = new Intent(Detail_dialog.this,HomeFragment.class);
-                            intent.putExtra("feedposition",feedPos);
+                          //  intent.putExtra("feedposition",feedPos);
                             startActivity(intent);
                         }
                     });

@@ -74,10 +74,7 @@ public class FeedAdapter extends FirebaseRecyclerAdapter<HomeViewModel, FeedAdap
 
     }
 
-    public void deleteItem(int position)
-    {
 
-    }
 
     class FeedViewHolder extends RecyclerView.ViewHolder {
         TextView description, location, transport,userType;
