@@ -61,7 +61,7 @@ public class Detail_dialog extends AppCompatActivity {
         feedId = getIntent().getExtras().get("id").toString();
 //        feedPos = (int)getIntent().getExtras().get("feedPos");
 
-        reff = FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Feed").child(feedId);
+        reff = FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed").child(feedId);
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -91,7 +91,7 @@ public class Detail_dialog extends AppCompatActivity {
                     acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Feed").child(feedId).child("feedAccepted").setValue("yes");
+                            FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed").child(feedId).child("feedAccepted").setValue("yes");
                           //  FragmentManager fm = getSupportFragmentManager();
                             Intent intent = new Intent(Detail_dialog.this,HomeFragment.class);
                           //  intent.putExtra("feedposition",feedPos);

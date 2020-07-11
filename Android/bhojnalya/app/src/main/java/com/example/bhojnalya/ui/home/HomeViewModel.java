@@ -15,7 +15,15 @@ public class HomeViewModel extends ViewModel {
     String Veg_NonVeg;
     String self_d_p;
     String feedAccepted;
+    String UserId;
 
+    public String getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(String userId) {
+        UserId = userId;
+    }
 
     public HomeViewModel() {
 

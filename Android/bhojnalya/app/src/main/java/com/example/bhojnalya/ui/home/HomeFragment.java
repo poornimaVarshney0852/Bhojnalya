@@ -1,9 +1,11 @@
 package com.example.bhojnalya.ui.home;
 
 import android.app.Dialog;
+import android.app.VoiceInteractor;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import static com.android.volley.VolleyLog.TAG;
+
 
 public class HomeFragment extends Fragment  {
     private DatabaseReference ref;
@@ -33,6 +42,7 @@ public class HomeFragment extends Fragment  {
     private FloatingActionButton addRequestbutton;
     private RecyclerView recyclerView;
     private FeedAdapter feedAdapter;
+    List<HomeViewModel> hvm = new ArrayList<>();
     private int position=-1;
 
 
@@ -51,13 +61,38 @@ public class HomeFragment extends Fragment  {
       //end here to print latest data first from firebase
 
         recyclerView.setLayoutManager(linearLayoutManager);
+
+
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("User").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
                         .build();
 
+
         feedAdapter = new FeedAdapter(options);
+       // int i = 0;
+
+       // Log.i(TAG, "COUNT"+feedAdapter.getItemCount());
+       // Log.i(TAG, "UserId"+feedAdapter.get);
+
+//        while(i<max)
+//        {
+//            if(feedAdapter.getItem(i).UserId.equals(FirebaseAuth.getInstance().getUid()))
+//            {
+//                feedAdapter.notifyItemRemoved(i);
+//                i++;
+//            }
+//            else
+//            {
+//                i++;
+//            }
+//
+//        }
+
         recyclerView.setAdapter(feedAdapter);
+
+
+
 
 
 //.child().child("Feed").orderByChild("feedAccepted").equalTo("no")
