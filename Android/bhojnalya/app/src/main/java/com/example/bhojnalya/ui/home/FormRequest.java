@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -132,7 +133,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpinner.getSelectedItem().toString());
                 hm.put("feedAccepted","no");
                 hm.put("self_d_p","0");
-                String userid = FirebaseAuth.getInstance().getUid();
+                String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 hm.put("UserId",userid);
                 if (Transport.equals("yes")) {
                     hm.put("transport", "yes");
