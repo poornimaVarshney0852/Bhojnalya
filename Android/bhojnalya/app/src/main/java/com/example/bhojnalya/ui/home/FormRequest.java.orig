@@ -133,8 +133,12 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpinner.getSelectedItem().toString());
                 hm.put("feedAccepted","no");
                 hm.put("self_d_p","0");
+<<<<<<< HEAD
+                hm.put("UserId",FirebaseAuth.getInstance().getCurrentUser().getUid());
+=======
                 String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 hm.put("UserId",userid);
+>>>>>>> 32934cd0bf109402a9d46397e3337f36b73ee4ec
                 if (Transport.equals("yes")) {
                     hm.put("transport", "yes");
                 } else {
@@ -142,7 +146,11 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 }
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+<<<<<<< HEAD
+                FirebaseDatabase.getInstance().getReference().child("Poornima").child("User").child(user.getUid()).child("Feed").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
+=======
                 FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
+>>>>>>> 32934cd0bf109402a9d46397e3337f36b73ee4ec
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(FormRequest.this, "Successfully added", Toast.LENGTH_SHORT).show();

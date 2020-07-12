@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MyAccountFragment extends Fragment {
 
     private MyAccountViewModel notificationsViewModel;
+
     Button logoutButton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

@@ -144,10 +144,15 @@ public class NewUser extends AppCompatActivity {
                             hm.put("Email",email);
                             hm.put("PhoneNumber",phoneNumber);
                             hm.put("Password",password);
+<<<<<<< HEAD
+                            hm.put("Location",location);
+                            FirebaseDatabase.getInstance().getReference().child("Poornima").child("UserDetails").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
+=======
                             hm.put("UserId",FirebaseAuth.getInstance().getUid());
                             hm.put("Location",location);
 
                             FirebaseDatabase.getInstance().getReference().child("UserDetails").child(FirebaseAuth.getInstance().getUid()).setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
+>>>>>>> 32934cd0bf109402a9d46397e3337f36b73ee4ec
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(NewUser.this, "Successfully added", Toast.LENGTH_SHORT).show();
