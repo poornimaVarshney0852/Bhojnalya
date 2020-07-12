@@ -132,8 +132,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpinner.getSelectedItem().toString());
                 hm.put("feedAccepted","no");
                 hm.put("self_d_p","0");
-                String userid = FirebaseAuth.getInstance().getUid();
-                hm.put("UserId",userid);
+                hm.put("UserId",FirebaseAuth.getInstance().getUid());
                 if (Transport.equals("yes")) {
                     hm.put("transport", "yes");
                 } else {
@@ -141,7 +140,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 }
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseDatabase.getInstance().getReference().child("Feed").push().setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(FormRequest.this, "Successfully added", Toast.LENGTH_SHORT).show();

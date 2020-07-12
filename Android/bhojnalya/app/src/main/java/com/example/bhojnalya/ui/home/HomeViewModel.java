@@ -13,9 +13,13 @@ public class HomeViewModel extends ViewModel {
     String Veg_NonVeg;
     String self_d_p;
     String feedAccepted;
-    String userId;
 
 
+    String UserId;
+
+    public void setUserId(String UserId) {
+        this.UserId = UserId;
+    }
 
     public HomeViewModel() {
 
@@ -93,7 +97,6 @@ public class HomeViewModel extends ViewModel {
         this.transport = transport;
     }
 
-    public String getUserId() { return userId; }
+    public String getUserId() { return UserId; }
 
-    public void setUserId(String userId) { this.userId = userId; }
 }

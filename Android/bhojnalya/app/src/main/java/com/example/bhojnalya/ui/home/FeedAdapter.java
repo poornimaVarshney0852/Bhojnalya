@@ -5,6 +5,7 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.system.Os;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ public class FeedAdapter extends FirebaseRecyclerAdapter<HomeViewModel, FeedAdap
 
     public FeedAdapter(@NonNull FirebaseRecyclerOptions<HomeViewModel> options) {
         super(options);
+
     }
 
 
@@ -42,26 +44,34 @@ public class FeedAdapter extends FirebaseRecyclerAdapter<HomeViewModel, FeedAdap
     @Override
     protected void onBindViewHolder(@NonNull FeedViewHolder holder, final int position, @NonNull HomeViewModel model) {
 
+                    if(!FirebaseAuth.getInstance().getUid().equals(model.getUserId())) {
+                        holder.description.setText(model.getFoodDiscription());
+                        holder.location.setText(model.getLocation());
+                        holder.transport.setText(model.getTransport());
+                        holder.userType.setText(model.getUserType());
+                        Log.d("user id", " user id of feeds" + model.getUserId());
+                        Log.d("user id", " user id of self = " + model.getSelf_d_p());
 
-            holder.description.setText(model.getFoodDiscription());
-            holder.location.setText(model.getLocation());
-            holder.transport.setText(model.getTransport());
-            holder.userType.setText(model.getUserType());
-        Log.d("user id"," user id of feeds"+model.getUserId());
-        Log.d("user id"," user id of self = "+model.getSelf_d_p());
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String id = getRef(position).getKey();
+                                //   int positionOfFeed = position;
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String id = getRef(position).getKey();
-                 //   int positionOfFeed = position;
+                                Intent intent = new Intent(v.getContext(), Detail_dialog.class);
+                                intent.putExtra("id", "" + id);
+                                //intent.putExtra("feedPos", positionOfFeed);
+                                v.getContext().startActivity(intent);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        holder.itemView.setVisibility(View.GONE);
+                        holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+                    }
 
-                    Intent intent = new Intent(v.getContext(), Detail_dialog.class);
-                    intent.putExtra("id", "" + id);
-                    //intent.putExtra("feedPos", positionOfFeed);
-                    v.getContext().startActivity(intent);
-                }
-            });
+
         }
 
 
@@ -79,12 +89,8 @@ public class FeedAdapter extends FirebaseRecyclerAdapter<HomeViewModel, FeedAdap
 
     }
 
-    public void deleteItem(int position)
-    {
 
-    }
-
-    class FeedViewHolder extends RecyclerView.ViewHolder {
+    public class FeedViewHolder extends RecyclerView.ViewHolder {
         TextView description, location, transport,userType;
 
         public FeedViewHolder(@NonNull View itemView) {
