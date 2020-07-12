@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +54,10 @@ public class HomeFragment extends Fragment  {
         recyclerView.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed"), HomeViewModel.class)
                         .build();
+
+        Log.d("data","data = "+options);
 
         feedAdapter = new FeedAdapter(options);
         recyclerView.setAdapter(feedAdapter);

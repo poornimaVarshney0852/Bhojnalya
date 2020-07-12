@@ -1,35 +1,36 @@
 package com.example.bhojnalya.ui.home;
 
-import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+        import android.app.FragmentTransaction;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.Button;
+        import android.widget.CheckBox;
+        import android.widget.RadioButton;
+        import android.widget.RadioGroup;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
+        import androidx.annotation.NonNull;
+        import androidx.annotation.Nullable;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.fragment.app.DialogFragment;
 
-import android.app.Fragment;
+        import android.app.Fragment;
 
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
+        import androidx.fragment.app.FragmentManager;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bhojnalya.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+        import com.example.bhojnalya.R;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.database.DataSnapshot;
+        import com.google.firebase.database.DatabaseError;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.database.ValueEventListener;
 
 public class Detail_dialog extends AppCompatActivity {
     private TextView description,type,veg_non_veg,quantity,cook,location,transport, self;
@@ -64,8 +65,8 @@ public class Detail_dialog extends AppCompatActivity {
         reff.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               String type_1 = dataSnapshot.child("UserType").getValue().toString();
-               String description_1 = dataSnapshot.child("FoodDiscription").getValue().toString();
+                String type_1 = dataSnapshot.child("UserType").getValue().toString();
+                String description_1 = dataSnapshot.child("FoodDiscription").getValue().toString();
                 String quantity_1 = dataSnapshot.child("QuantityMeasurement").getValue().toString();
                 String cooked_1 = dataSnapshot.child("Cooked_UnCooked").getValue().toString();
                 String veg_1 = dataSnapshot.child("Veg_NonVeg").getValue().toString();
@@ -90,11 +91,10 @@ public class Detail_dialog extends AppCompatActivity {
                     acceptButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("feedAccepted").setValue("yes");
-                            FragmentManager fm = getSupportFragmentManager();
-                            Intent intent = new Intent(Detail_dialog.this,HomeFragment.class);
-                            intent.putExtra("feedposition",feedPos);
-                            startActivity(intent);
+                            FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("feedAccepted").setValue(FirebaseAuth.getInstance().getUid());
+
+                            Log.d("feedAccepted","changed = "+FirebaseAuth.getInstance().getUid());
+
                         }
                     });
                 }
@@ -112,9 +112,9 @@ public class Detail_dialog extends AppCompatActivity {
 
 
 
-      //    transportButton = findViewById(R.id.transportButton);
+        //    transportButton = findViewById(R.id.transportButton);
         acceptButton = findViewById(R.id.accept);
-       acceptButton.setEnabled(false);
+        acceptButton.setEnabled(false);
 
 
 
@@ -128,25 +128,25 @@ public class Detail_dialog extends AppCompatActivity {
             acceptButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   String radio = radioButton.getText().toString();
+                    String radio = radioButton.getText().toString();
 
-                   if(radio.equals("Yes"))
-                   {
-                     //  RecyclerView recyclerView =
-                       radioButtonText = "yes";
-                   }
+                    if(radio.equals("Yes"))
+                    {
+                        //  RecyclerView recyclerView =
+                        radioButtonText = "yes";
+                    }
 
-                   else
-                   {
-                    radioButtonText = "no";
-                   }
+                    else
+                    {
+                        radioButtonText = "no";
+                    }
 //                   HomeViewModel hvm = new HomeViewModel();
 //                   hvm.setSelf_p_d(radioButtonText);
-                     FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("self_d_p").setValue(radioButtonText);
-                    FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("feedAccepted").setValue("yes");
+                    FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("self_d_p").setValue(radioButtonText);
+                    FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("feedAccepted").setValue(FirebaseAuth.getInstance().getUid());
                     Toast.makeText(Detail_dialog.this, "Accepted and Tranport feed Generated", Toast.LENGTH_SHORT).show();
-                   Intent intent = new Intent(Detail_dialog.this,HomeFragment.class);
-                   startActivity(intent);
+//                    Intent intent = new Intent(getBaseContext(), HomeFragment.class);
+//                    startActivity(intent);
                 }
             });
         }

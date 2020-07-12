@@ -60,6 +60,7 @@
         android:textSize="14dp"
         android:textColor="@color/DarkGray"/>
 
+
 <!--    <Button-->
 <!--        android:id="@+id/viewDetails"-->
 <!--        android:layout_gravity="center"-->
