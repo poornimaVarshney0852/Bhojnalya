@@ -11,31 +11,21 @@
         android:id="@+id/navigation_sort"
         android:icon="@drawable/ic_filter_list_black_24dp"
         android:title="Filter By"/>
-<!--    <menu>-->
-<!--        <item-->
-<!--            android:id="@+id/by_location"-->
-<!--            android:title="Location"/>-->
-<!--        <item-->
-<!--            android:id="@+id/by_requested_feed"-->
-<!--            android:title="Food Request Feeds"-->
-<!--            />-->
-<!--        <item-->
-<!--            android:id="@+id/by_donation_feed"-->
-<!--            android:title="Food Donation Feed"-->
-<!--            />-->
-
-<!--    </menu>-->
-
-
     <item
         android:id="@+id/navigation_history"
         android:icon="@android:drawable/ic_menu_recent_history"
         android:title="History"/>
 
+
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_notification"
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Notification"/>
+    <item
+        android:id="@+id/navigation_myaccount"
         android:icon="@drawable/ic_account_circle_black_24dp"
         android:title="@string/title_notifications"/>
+
 
 </menu>
 
