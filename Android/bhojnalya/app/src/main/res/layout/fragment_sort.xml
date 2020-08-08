@@ -7,14 +7,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.Sort.SortFragment" >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:id="@+id/transportDetailButton"
-        android:text="Transport Request"
+    <Spinner
+        android:id="@+id/sort_spinner"
+        android:layout_width="265dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:entries="@array/sort"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

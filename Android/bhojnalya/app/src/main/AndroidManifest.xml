@@ -21,6 +21,7 @@
         <activity android:name="com.example.bhojnalya.ui.home.FormRequest" />
         <activity android:name=".ui.home.Detail_dialog"/>
         <activity android:name="com.example.bhojnalya.ui.home.HomeFragment"/>
+        <activity android:name=".ui.Sort.SortDetails"/>
         <activity android:name=".NewUser"/>
         <activity android:name=".login"/>
         <activity

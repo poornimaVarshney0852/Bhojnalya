@@ -44,7 +44,7 @@ public class FeedAdapter extends FirebaseRecyclerAdapter<HomeViewModel, FeedAdap
     @Override
     protected void onBindViewHolder(@NonNull FeedViewHolder holder, final int position, @NonNull HomeViewModel model) {
 
-                    if(!FirebaseAuth.getInstance().getUid().equals(model.getUserId())) {
+                    if(!FirebaseAuth.getInstance().getUid().equals(model.getUserId()) && model.getFeedAccepted().equals("no")) {
                         holder.description.setText(model.getFoodDiscription());
                         holder.location.setText(model.getLocation());
                         holder.transport.setText(model.getTransport());

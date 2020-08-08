@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment  {
         recyclerView.setLayoutManager(linearLayoutManager);
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
                         .build();
 
         Log.d("data","data = "+options);

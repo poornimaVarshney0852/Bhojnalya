@@ -14,6 +14,16 @@ public class HomeViewModel extends ViewModel {
     String self_d_p;
     String feedAccepted;
     String UserId;
+    String City;
+
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
 
 
 
