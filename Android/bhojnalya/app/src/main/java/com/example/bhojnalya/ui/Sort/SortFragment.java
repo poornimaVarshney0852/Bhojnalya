@@ -82,6 +82,7 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
                 sort_type = "Request";
             } else if (str.equals("Transport Feed")) {
                 sort_type = "Transport";
+                
             }
             Intent intent = new Intent(getActivity(), SortDetails.class);
             intent.putExtra("type", sort_type);
