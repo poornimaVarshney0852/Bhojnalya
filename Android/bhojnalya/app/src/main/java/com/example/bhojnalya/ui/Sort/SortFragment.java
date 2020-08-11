@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -38,17 +37,6 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
             ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_sort, container, false);
-        final TextView textView = root.findViewById(R.id.transportDetailButton);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-        final Button TransportFeed = root.findViewById(R.id.transportDetailButton);
-        TransportFeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TransportFeed.class);
-                startActivity(intent);
 
         sortspinner = root.findViewById(R.id.sort_spinner);
 
@@ -98,6 +86,7 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
             Intent intent = new Intent(getActivity(), SortDetails.class);
             intent.putExtra("type", sort_type);
             startActivity(intent);
+
         }
     }
 

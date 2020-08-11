@@ -88,10 +88,6 @@ public class MyAccountFragment extends Fragment {
             }
         });
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        textView.setText("user = "+user.getUid());
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        textView.setText("user = ");
 
         logoutButton = root.findViewById(R.id.floatingLogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
