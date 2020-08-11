@@ -7,7 +7,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,13 +26,12 @@ import com.example.bhojnalya.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,23 +40,23 @@ import java.util.Locale;
 import java.util.HashMap;
 
 public class FormRequest extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    private EditText foodDiscription,quantity;
-    private CheckBox pickup ;
+    private EditText foodDiscription, quantity;
+    private CheckBox pickup;
     private TextView location;
-    private String Transport="";
+    private String Transport = "";
     private Button submit;
     ImageView imageLocation;
     TextView textViewLocation;
     Spinner quantityMeasureSpinner, donationSpinner, vegSpinner, cookedSpinner;
-
-    FusedLocationProviderClient  fusedLocationProviderClient;
+    static String city;
+    FusedLocationProviderClient fusedLocationProviderClient;
     ArrayAdapter<CharSequence> adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.donate_form);
+        setContentView(R.layout.newfeed_form);
         foodDiscription = findViewById(R.id.editText_donation_food);
         quantity = findViewById(R.id.editText_donation_amount);
         pickup = findViewById(R.id.checkBox_donation_pick);
@@ -69,7 +67,7 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
         vegSpinner = findViewById(R.id.spinner_veg_non_veg);
         cookedSpinner = findViewById(R.id.spinner_donation_cooked);
 
-    // Retrieving Spinner data
+        // Retrieving Spinner data
         adapter = ArrayAdapter.createFromResource(this, R.array.donation, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         donationSpinner.setAdapter(adapter);
@@ -127,14 +125,15 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
                 HashMap<String, Object> hm = new HashMap<>();
                 hm.put("FoodDiscription", foodDiscription.getText().toString());
                 hm.put("location", location.getText().toString());
-                hm.put("UserType",donationSpinner.getSelectedItem().toString());
-                hm.put("Cooked_UnCooked",cookedSpinner.getSelectedItem().toString());
-                hm.put("Veg_NonVeg",vegSpinner.getSelectedItem().toString());
-                hm.put("QuantityMeasurement",quantity.getText().toString()+" "+quantityMeasureSpinner.getSelectedItem().toString());
-                hm.put("feedAccepted","no");
-                hm.put("self_d_p","0");
+                hm.put("UserType", donationSpinner.getSelectedItem().toString());
+                hm.put("Cooked_UnCooked", cookedSpinner.getSelectedItem().toString());
+                hm.put("Veg_NonVeg", vegSpinner.getSelectedItem().toString());
+                hm.put("QuantityMeasurement", quantity.getText().toString() + " " + quantityMeasureSpinner.getSelectedItem().toString());
+                hm.put("feedAccepted", "no");
+                hm.put("self_d_p", "0");
+                hm.put("City", city);
                 String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                hm.put("UserId",userid);
+                hm.put("UserId", userid);
                 if (Transport.equals("yes")) {
                     hm.put("transport", "yes");
                 } else {
@@ -159,24 +158,35 @@ public class FormRequest extends AppCompatActivity implements AdapterView.OnItem
     }
 
 
-            private void getLocation() {
-                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        Location location = task.getResult();
-                        if(location != null){
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if (location != null) {
 
-                            try {
-                                Geocoder geocoder = new Geocoder(FormRequest.this, Locale.getDefault());
-                                List<Address> addresses = geocoder.getFromLocation(
-                                        location.getLatitude(),location.getLongitude(),1);
-                                textViewLocation.setText(addresses.get(0).getAddressLine(0));
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                    try {
+                        Geocoder geocoder = new Geocoder(FormRequest.this, Locale.getDefault());
+                        List<Address> addresses = geocoder.getFromLocation(
+                                location.getLatitude(), location.getLongitude(), 1);
+                        city = addresses.get(0).getLocality();
+                        textViewLocation.setText(addresses.get(0).getAddressLine(0));
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
-                });
+                }
+            }
+        });
             }
 
 

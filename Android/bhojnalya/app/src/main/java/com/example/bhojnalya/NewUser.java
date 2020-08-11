@@ -40,12 +40,13 @@ import java.util.Locale;
 
 public class NewUser extends AppCompatActivity {
 
-    EditText nameEditText,phoneNumberEditText,emailEditText,passwordEditText,locationEditText;
-    String name,phoneNumber,email,password,location,currentlocation;
+    EditText nameEditText, phoneNumberEditText, emailEditText, passwordEditText, locationEditText;
+    String name, phoneNumber, email, password, location, currentlocation;
     ImageView imageLocation;
     Button createNewUserButton, loginButton;
     FirebaseAuth firebaseAuth;
     FusedLocationProviderClient fusedLocationProviderClient;
+    static String city;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class NewUser extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(NewUser.this,login.class);
+                Intent intent = new Intent(NewUser.this, login.class);
                 startActivity(intent);
             }
         });
@@ -95,27 +96,27 @@ public class NewUser extends AppCompatActivity {
                 email = emailEditText.getText().toString().trim();
                 location = locationEditText.getText().toString();
 
-                if(TextUtils.isEmpty(name)){
+                if (TextUtils.isEmpty(name)) {
                     nameEditText.setError("Enter Name");
                     nameEditText.requestFocus();
                     return;
                 }
-                if(TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     emailEditText.setError("Enter Email");
                     emailEditText.requestFocus();
                     return;
                 }
-                if(TextUtils.isEmpty(phoneNumber)){
+                if (TextUtils.isEmpty(phoneNumber)) {
                     phoneNumberEditText.setError("Enter Phone Number");
                     phoneNumberEditText.requestFocus();
                     return;
                 }
-                if(TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     passwordEditText.setError("Enter Password");
                     passwordEditText.requestFocus();
                     return;
                 }
-                if(TextUtils.isEmpty(location)){
+                if (TextUtils.isEmpty(location)) {
                     locationEditText.setError("Enter Location");
                     locationEditText.requestFocus();
                     return;
@@ -140,12 +141,13 @@ public class NewUser extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
 
                             HashMap<String, Object> hm = new HashMap<>();
-                            hm.put("Name",name );
-                            hm.put("Email",email);
-                            hm.put("PhoneNumber",phoneNumber);
-                            hm.put("Password",password);
-                            hm.put("UserId",FirebaseAuth.getInstance().getUid());
-                            hm.put("Location",location);
+                            hm.put("Name", name);
+                            hm.put("Email", email);
+                            hm.put("PhoneNumber", phoneNumber);
+                            hm.put("Password", password);
+                            hm.put("UserId", FirebaseAuth.getInstance().getUid());
+                            hm.put("Location", location);
+                            hm.put("City",city);
 
                             FirebaseDatabase.getInstance().getReference().child("UserDetails").child(FirebaseAuth.getInstance().getUid()).setValue(hm).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -160,7 +162,7 @@ public class NewUser extends AppCompatActivity {
                             });
 
 
-                            Intent intent = new Intent(NewUser.this,MainActivity.class);
+                            Intent intent = new Intent(NewUser.this, MainActivity.class);
                             startActivity(intent);
 
                         } else {
@@ -178,16 +180,27 @@ public class NewUser extends AppCompatActivity {
 
 
     private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
                 Location location = task.getResult();
-                if(location != null){
+                if (location != null) {
 
                     try {
                         Geocoder geocoder = new Geocoder(NewUser.this, Locale.getDefault());
                         List<Address> addresses = geocoder.getFromLocation(
-                                location.getLatitude(),location.getLongitude(),1);
+                                location.getLatitude(), location.getLongitude(), 1);
+                        city = addresses.get(0).getLocality();
                         currentlocation = addresses.get(0).getAddressLine(0);
                         locationEditText.setText(currentlocation);
                     } catch (IOException e) {

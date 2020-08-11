@@ -20,4 +20,11 @@
         <item>Non-Veg</item>
         <item>Both</item>
     </string-array>
+    <string-array name="sort">
+        <item>Select</item>
+        <item>Location</item>
+        <item>Transport Feed</item>
+        <item>Donation</item>
+        <item>Request</item>
+    </string-array>
 </resources>

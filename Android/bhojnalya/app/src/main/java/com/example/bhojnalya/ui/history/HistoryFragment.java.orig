@@ -23,11 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class HistoryFragment extends Fragment {
+<<<<<<< HEAD
+=======
 
-    private DatabaseReference ref;
-    private FirebaseRecyclerOptions<HomeViewModel> options;
-    private FirebaseRecyclerAdapter<HomeViewModel, FeedAdapter.FeedViewHolder> adapter;
-
+>>>>>>> d2cca611e9dc1f52561f6c18e816575542c44632
     private RecyclerView recyclerView;
     private HistoryFeedAdapter feedAdapter;
 

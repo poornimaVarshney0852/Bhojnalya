@@ -18,10 +18,15 @@
         tools:layout="@layout/fragment_sort" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_myaccount"
         android:name="com.example.bhojnalya.ui.myaccount.MyAccountFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_myaccount" />
+    <fragment
+        android:id="@+id/navigation_notification"
+        android:name="com.example.bhojnalya.Notification"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notification"/>
 
     <fragment
         android:id="@+id/navigation_history"
