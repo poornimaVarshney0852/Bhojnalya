@@ -60,35 +60,16 @@ public class HomeFragment extends Fragment  {
 
       //end here to print latest data first from firebase
 
-        recyclerView.setLayoutManager(linearLayoutManager);
-
+         recyclerView.setLayoutManager(linearLayoutManager);
+//        FirebaseDatabase.getInstance().getReference().child("Transport_Feed").removeValue();
 
         FirebaseRecyclerOptions<HomeViewModel> options =
                 new FirebaseRecyclerOptions.Builder<HomeViewModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Poornima").child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Feed").orderByChild("feedAccepted").equalTo("no"), HomeViewModel.class)
                         .build();
 
 
         feedAdapter = new FeedAdapter(options);
-       // int i = 0;
-
-       // Log.i(TAG, "COUNT"+feedAdapter.getItemCount());
-       // Log.i(TAG, "UserId"+feedAdapter.get);
-
-//        while(i<max)
-//        {
-//            if(feedAdapter.getItem(i).UserId.equals(FirebaseAuth.getInstance().getUid()))
-//            {
-//                feedAdapter.notifyItemRemoved(i);
-//                i++;
-//            }
-//            else
-//            {
-//                i++;
-//            }
-//
-//        }
-
         recyclerView.setAdapter(feedAdapter);
 
 

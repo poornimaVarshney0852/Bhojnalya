@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bhojnalya">
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -21,6 +21,7 @@
         <activity android:name="com.example.bhojnalya.ui.home.FormRequest" />
         <activity android:name=".NewUser"/>
         <activity android:name=".login"/>
+        <activity android:name=".ui.Sort.TransportFeed"/>
         <activity android:name=".ui.home.Detail_dialog"/>
         <activity android:name="com.example.bhojnalya.ui.home.HomeFragment"/>
         <activity

@@ -24,12 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class HistoryFragment extends Fragment {
 
-    private DatabaseReference ref;
-    private FirebaseRecyclerOptions<HomeViewModel> options;
-    private FirebaseRecyclerAdapter<HomeViewModel, FeedAdapter.FeedViewHolder> adapter;
     private RecyclerView recyclerView;
     private HistoryFeedAdapter feedAdapter;
-    private int position=-1;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
