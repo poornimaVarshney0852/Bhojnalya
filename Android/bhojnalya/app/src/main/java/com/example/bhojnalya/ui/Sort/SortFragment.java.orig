@@ -5,9 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+<<<<<<< HEAD
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+=======
+import android.widget.Button;
+>>>>>>> d2cca611e9dc1f52561f6c18e816575542c44632
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +41,7 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
             ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_sort, container, false);
+<<<<<<< HEAD
 
         sortspinner = root.findViewById(R.id.sort_spinner);
 
@@ -45,6 +50,16 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
         sortspinner.setAdapter(adapter);
         sortspinner.setOnItemSelectedListener(this);
 
+=======
+        final Button TransportFeed = root.findViewById(R.id.transportDetailButton);
+        TransportFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TransportFeed.class);
+                startActivity(intent);
+            }
+        });
+>>>>>>> d2cca611e9dc1f52561f6c18e816575542c44632
 
         return root;
     }
@@ -82,12 +97,10 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
                 sort_type = "Request";
             } else if (str.equals("Transport Feed")) {
                 sort_type = "Transport";
-                
             }
             Intent intent = new Intent(getActivity(), SortDetails.class);
             intent.putExtra("type", sort_type);
             startActivity(intent);
-
         }
     }
 
