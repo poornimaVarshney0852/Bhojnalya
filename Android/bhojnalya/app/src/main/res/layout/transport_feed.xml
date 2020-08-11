@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/transport_feed_item"
+    >
+    <TextView
+        android:id="@+id/transport_feed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Transport Feed"
+        android:textColor="@color/White"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:background="@color/Blue"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@color/IndianRed"
+        android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/foodDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="description"
+        android:textColor="@color/DarkGray"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PickUp Location:"
+        android:textColor="@color/IndianRed"
+        android:textSize="16dp"/>
+    <TextView
+        android:id="@+id/pickup_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PickUp Location"
+        android:textColor="@color/DarkGray"
+        android:textSize="14dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone No. :"
+        android:textColor="@color/DarkGray"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pickup_phonenumber"
+        android:textColor="@color/DarkGray"
+        android:text="1234567890"/>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delivery Location"
+        android:textSize="16dp"
+        android:textColor="@color/IndianRed"/>
+    <TextView
+        android:id="@+id/delivery_transport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delivery Location"
+        android:textSize="14dp"
+        android:textColor="@color/DarkGray"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone No. :"
+        android:textColor="@color/DarkGray"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/delivery_phonenumber"
+        android:textColor="@color/DarkGray"
+        android:text="1234567890"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Will deliver?"
+        android:layout_gravity="center"
+        android:background="@color/PowderBlue"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Blue"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

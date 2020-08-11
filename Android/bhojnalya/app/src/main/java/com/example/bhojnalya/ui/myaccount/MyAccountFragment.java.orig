@@ -67,6 +67,7 @@ public class MyAccountFragment extends Fragment {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
+<<<<<<< HEAD
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         reff = FirebaseDatabase.getInstance().getReference().child("UserDetails").child(user.getUid());
         reff.addValueEventListener(new ValueEventListener() {
@@ -84,14 +85,14 @@ public class MyAccountFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+=======
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        textView.setText("user = ");
+>>>>>>> d2cca611e9dc1f52561f6c18e816575542c44632
 
             }
         });
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        textView.setText("user = "+user.getUid());
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        textView.setText("user = ");
 
         logoutButton = root.findViewById(R.id.floatingLogoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {

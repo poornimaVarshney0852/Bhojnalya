@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+=======
+import android.widget.Button;
+>>>>>>> d2cca611e9dc1f52561f6c18e816575542c44632
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,17 +41,7 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
             ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_sort, container, false);
-        final TextView textView = root.findViewById(R.id.transportDetailButton);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-        final Button TransportFeed = root.findViewById(R.id.transportDetailButton);
-        TransportFeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), TransportFeed.class);
-                startActivity(intent);
+<<<<<<< HEAD
 
         sortspinner = root.findViewById(R.id.sort_spinner);
 
@@ -57,6 +50,16 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
         sortspinner.setAdapter(adapter);
         sortspinner.setOnItemSelectedListener(this);
 
+=======
+        final Button TransportFeed = root.findViewById(R.id.transportDetailButton);
+        TransportFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TransportFeed.class);
+                startActivity(intent);
+            }
+        });
+>>>>>>> d2cca611e9dc1f52561f6c18e816575542c44632
 
         return root;
     }
