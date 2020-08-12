@@ -91,6 +91,7 @@
         android:text="Will deliver?"
         android:layout_gravity="center"
         android:background="@color/PowderBlue"
+        android:id="@+id/delivery_accept_btn"
         />
     <TextView
         android:layout_width="match_parent"
