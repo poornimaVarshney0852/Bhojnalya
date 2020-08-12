@@ -21,14 +21,12 @@
         <activity android:name="com.example.bhojnalya.ui.home.FormRequest" />
         <activity android:name=".NewUser"/>
         <activity android:name=".login"/>
-        <activity android:name=".ui.Sort.TransportFeed"/>
+        <activity android:name=".ui.Sort.TransportFeed"
+            tools:ignore="Instantiatable" />
         <activity android:name=".ui.home.Detail_dialog"/>
-        <activity android:name="com.example.bhojnalya.ui.home.HomeFragment"/>
-        <activity android:name=".NewUser"/>
-        <activity android:name=".login"/>
+        <activity android:name="com.example.bhojnalya.ui.home.HomeFragment"
+            tools:ignore="Instantiatable" />
         <activity android:name=".ui.Sort.SortDetails"/>
-        <activity android:name=".NewUser"/>
-        <activity android:name=".login"/>
         <activity
             android:name="com.example.bhojnalya.MainActivity"
             android:label="@string/app_name">

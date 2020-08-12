@@ -76,17 +76,17 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
                 }
             });
         }
-        else {
+        else if (str.equals("Transport Feed")) {
+
+            Log.d("","hello FROM SORT FRAGMENT");
+            Intent intent = new Intent(getActivity(), TransportFeed.class);
+            startActivity(intent);
+
+        } else {
             if (str.equals("Donation")) {
                 sort_type = "Donation";
             } else if (str.equals("Request")) {
                 sort_type = "Request";
-            } else if (str.equals("Transport Feed")) {
-                sort_type = "Transport";
-                Log.d("","hello FROM SORT FRAGMENT");
-                Intent intent = new Intent(getActivity(), TransportFeed.class);
-                startActivity(intent);
-
             }
             Intent intent = new Intent(getActivity(), SortDetails.class);
             intent.putExtra("type", sort_type);

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,19 +20,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class TransportFeed extends Fragment {
+public class TransportFeed extends AppCompatActivity  {
 
     private RecyclerView recyclerView;
     private TransportFeedAdapter feedAdapter;
 
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.transport_feed_recycler);
 
+        recyclerView = findViewById(R.id.recycler);
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.transport_feed_recycler, container, false);
         //To print latest data first from firebase
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(false);
 
         //end here to print latest data first from firebase
@@ -48,9 +49,7 @@ public class TransportFeed extends Fragment {
         feedAdapter = new TransportFeedAdapter(options);
         recyclerView.setAdapter(feedAdapter);
 
-
-        return  root;
-}
+    }
     @Override
     public void onStart() {
 
