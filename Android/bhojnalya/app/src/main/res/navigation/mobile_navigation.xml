@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_myaccount" />
     <fragment
         android:id="@+id/navigation_notification"
-        android:name="com.example.bhojnalya.Notification"
+        android:name="com.example.bhojnalya.ui.Notification.Notification"
         android:label="Notification"
         tools:layout="@layout/fragment_notification"/>
 

@@ -1,14 +1,14 @@
 package com.example.bhojnalya.ui.Sort;
 
 public class TransportModel {
-String Accepted_by ,Description ,Pick_up_location, Pick_up_Phone_number , Delivery_location, Delivery_phone_Number, Pick_up_name, Delivery_name,From_pickup_Uid,To_deliver_Uid; ;
+String accepted_by ,Description ,Pick_up_location, Pick_up_Phone_number , Delivery_location, Delivery_phone_Number, Pick_up_name, Delivery_name,From_pickup_Uid,To_deliver_Uid; ;
 
     public String getAccepted_by() {
-        return Accepted_by;
+        return accepted_by;
     }
 
     public void setAccepted_by(String accepted_by) {
-        Accepted_by = accepted_by;
+        accepted_by = accepted_by;
     }
 
     public String getFrom_pickup_Uid() {

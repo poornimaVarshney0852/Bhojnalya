@@ -19,6 +19,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class TransportFeedAdapter extends FirebaseRecyclerAdapter<TransportModel, TransportFeedAdapter.FeedViewHolder> {
@@ -28,19 +29,26 @@ public class TransportFeedAdapter extends FirebaseRecyclerAdapter<TransportModel
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull TransportFeedAdapter.FeedViewHolder holder, final int position, @NonNull TransportModel model) {
+    protected void onBindViewHolder(@NonNull TransportFeedAdapter.FeedViewHolder holder, final int position, @NonNull final TransportModel model) {
         Log.d("","hello FROM TRANSPORT FEED");
             holder.description.setText(model.Description);
             holder.pickup_location.setText(model.Pick_up_location);
             holder.pickup_number.setText(model.Pick_up_Phone_number);
             holder.delivery_transport.setText(model.Delivery_location);
             holder.delivery_number.setText(model.Delivery_phone_Number);
-//            holder.Delivery_accept_btn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    FirebaseDatabase.getInstance().getReference().child(Integer.toString(position)).child("Accepted_by").setValue(FirebaseAuth.getInstance().getUid());
-//                }
-//            });
+
+            holder.Delivery_accept_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HashMap <String, Object> hm = new HashMap<>();
+                    hm.put("accepted_by",FirebaseAuth.getInstance().getUid());
+                    hm.put("to_delivery",model.getTo_deliver_Uid());
+                    hm.put("from_pickup_id",model.getFrom_pickup_Uid());
+                    hm.put("food_discription",model.Description);
+                    FirebaseDatabase.getInstance().getReference().child("Transport_Feed").child(getRef(position).getKey()).child("accepted_by").setValue(FirebaseAuth.getInstance().getUid());
+                    FirebaseDatabase.getInstance().getReference().child("Notification_Of_Feed").push().setValue(hm);
+                }
+            });
 
         }
 
