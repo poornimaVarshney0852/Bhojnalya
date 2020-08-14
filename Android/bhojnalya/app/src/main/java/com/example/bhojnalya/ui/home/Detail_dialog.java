@@ -48,6 +48,7 @@ public class Detail_dialog extends AppCompatActivity {
     private String radioButtonText;
     String Pick_up_location,Pick_up_Phone_number,Pick_up_name,Delivery_location,Deliver_name,Delivery_phone_Number,to_Delivery_Uid,Pickup_Uid;
     String no ="no";
+    String description_1 = "";
 
     TransportModel hm = new TransportModel();
 
@@ -78,7 +79,7 @@ public class Detail_dialog extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String type_1 = dataSnapshot.child("UserType").getValue().toString();
-                String description_1 = dataSnapshot.child("FoodDiscription").getValue().toString();
+                description_1 = dataSnapshot.child("FoodDiscription").getValue().toString();
                 String quantity_1 = dataSnapshot.child("QuantityMeasurement").getValue().toString();
                 String cooked_1 = dataSnapshot.child("Cooked_UnCooked").getValue().toString();
                 String veg_1 = dataSnapshot.child("Veg_NonVeg").getValue().toString();
@@ -183,7 +184,10 @@ public class Detail_dialog extends AppCompatActivity {
                                              Deliver_name = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("Name").getValue().toString();
                                              Delivery_phone_Number = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("PhoneNumber").getValue().toString();
                                              to_Delivery_Uid = FirebaseAuth.getInstance().getUid();
+
+
                                     hm.put("Pick_up_name",Pick_up_name);
+                                    hm.put("FoodDescription",description_1);
                                     hm.put("Pick_up_location",Pick_up_location);
                                     hm.put("Pick_up_Phone_number",Pick_up_Phone_number);
                                     hm.put("Delivery_location",Delivery_location);
@@ -221,6 +225,7 @@ public class Detail_dialog extends AppCompatActivity {
 
                                     hm.put("Pick_up_location",Pick_up_location);
                                     hm.put("Pick_up_name",Pick_up_name);
+                                    hm.put("FoodDescription",description_1);
                                     hm.put("from_pickup_Uid",Pickup_Uid);
                                     hm.put("Pick_up_Phone_Number",Pick_up_Phone_number);
                                     hm.put("Delivery_location",Delivery_location);

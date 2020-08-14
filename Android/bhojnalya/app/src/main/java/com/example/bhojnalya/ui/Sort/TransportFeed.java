@@ -38,7 +38,7 @@ public class TransportFeed extends Fragment {
 
         recyclerView.setLayoutManager(linearLayoutManager);
 //        FirebaseDatabase.getInstance().getReference().child("Transport_Feed").removeValue();
-        Log.d("","hello FROM TRANSPORT FEED11111111111");
+//     Log.d("","hello FROM TRANSPORT FEED11111111111");
         FirebaseRecyclerOptions<TransportModel> options =
                 new FirebaseRecyclerOptions.Builder<TransportModel>()
                         .setQuery(FirebaseDatabase.getInstance().getReference().child("Transport_Feed").orderByChild("accepted_by").equalTo("no"), TransportModel.class)

@@ -20,8 +20,8 @@ public class SortDetails extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FeedAdapter feedAdapter;
-    String sort_type = null;
-    public static String city = null;
+    String sort_type = "";
+    public static String city = "";
     private DatabaseReference reff;
     TextView textView;
 
@@ -44,7 +44,7 @@ public class SortDetails extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         sort_type = bundle.getString("type");
         city = bundle.getString("city");
-        Log.d("type",sort_type);
+    //    Log.d("type",sort_type);
 
         if(sort_type.equals("Location")) {
 
