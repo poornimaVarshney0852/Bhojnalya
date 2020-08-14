@@ -66,7 +66,7 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
                     String city = dataSnapshot.child("City").getValue().toString();
                     Intent intent = new Intent(getActivity(), SortDetails.class);
                     intent.putExtra("type", sort_type);
-                    intent.putExtra("city", city);
+                    intent.putExtra("city",city);
                     startActivity(intent);
                 }
 
@@ -76,27 +76,24 @@ public class SortFragment extends Fragment implements AdapterView.OnItemSelected
                 }
             });
         }
-           else if (str.equals("Transport Feed")) {
-                sort_type = "Transport";
-                Log.d("","hello FROM SORT FRAGMENT");
-                Intent intent = new Intent(getActivity(), TransportFeed.class);
-                startActivity(intent);
+        else if (str.equals("Transport Feed")) {
 
+            Log.d("","hello FROM SORT FRAGMENT");
+            Intent intent = new Intent(getActivity(), TransportFeed.class);
+            startActivity(intent);
+
+        } else {
+            if (str.equals("Donation")) {
+                sort_type = "Donation";
+            } else if (str.equals("Request")) {
+                sort_type = "Request";
             }
-           else
-        { if (str.equals("Donation")) {
-            sort_type = "Donation";
-        }
-        else if (str.equals("Request")) {
-            sort_type = "Request";
-        }
-
             Intent intent = new Intent(getActivity(), SortDetails.class);
             intent.putExtra("type", sort_type);
             startActivity(intent);
 
-        }}
-
+        }
+    }
 
     public void onNothingSelected(AdapterView<?> parent) {
         Intent intent = new Intent(this.getContext(), SortFragment.class);
