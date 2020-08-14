@@ -46,7 +46,9 @@ public class Detail_dialog extends AppCompatActivity {
     private String feedId;
     private DatabaseReference reff;
     private String radioButtonText;
-    String Pick_up_location,Pick_up_Phone_number,Pick_up_name,Delivery_location,Deliver_name,Delivery_phone_Number,to_Delivery_Uid,Pickup_Uid;
+    String Pick_up_location,Pick_up_Phone_number,Pick_up_name,Delivery_location,Deliver_name,Delivery_phone_Number,to_Delivery_Uid,Pickup_Uid,description_1;
+    String no ="no";
+
     TransportModel hm = new TransportModel();
 
 
@@ -76,7 +78,7 @@ public class Detail_dialog extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String type_1 = dataSnapshot.child("UserType").getValue().toString();
-                String description_1 = dataSnapshot.child("FoodDiscription").getValue().toString();
+                description_1 = dataSnapshot.child("FoodDiscription").getValue().toString();
                 String quantity_1 = dataSnapshot.child("QuantityMeasurement").getValue().toString();
                 String cooked_1 = dataSnapshot.child("Cooked_UnCooked").getValue().toString();
                 String veg_1 = dataSnapshot.child("Veg_NonVeg").getValue().toString();
@@ -167,7 +169,7 @@ public class Detail_dialog extends AppCompatActivity {
 
                                 if (dataSnapshot.child("Feed").child(feedId).child("UserType").getValue().toString().equals("Donation")) {
 
-                                   // HashMap<String,Object> hm = new HashMap<>();
+                                    HashMap<String,Object> hm = new HashMap<>();
                                      Pick_up_location = dataSnapshot.child("Feed").child(feedId).child("location").getValue().toString();
                                    //  hm.setPick_up_location(Pick_up_location);
                                     Pickup_Uid = dataSnapshot.child("Feed").child(feedId).child("UserId").getValue().toString();
@@ -180,46 +182,53 @@ public class Detail_dialog extends AppCompatActivity {
                                              Delivery_location = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("Location").getValue().toString();
                                              Deliver_name = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("Name").getValue().toString();
                                              Delivery_phone_Number = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("PhoneNumber").getValue().toString();
-                                                to_Delivery_Uid = FirebaseAuth.getInstance().getUid();
-//                                    hm.put("Pick_up_name",Pick_up_name);
-//                                    hm.put("Pick_up_location",Pick_up_location);
-//                                    hm.put("Pick_up_Phone_number",Pick_up_Phone_number);
-//                                    hm.put("Delivery_location",Delivery_location);
-//                                    hm.put("Delivery_name",Deliver_name);
-//                                    hm.put("Delivery_phone_Number",Delivery_phone_Number);
-//                                    hm.setFrom_pickup_Uid(Pick_phone_Uid);
+                                             to_Delivery_Uid = FirebaseAuth.getInstance().getUid();
+                                             hm.put("FoodDescription",description_1);
+                                    hm.put("Pick_up_name",Pick_up_name);
+                                    hm.put("Pick_up_location",Pick_up_location);
+                                    hm.put("Pick_up_Phone_number",Pick_up_Phone_number);
+                                    hm.put("Delivery_location",Delivery_location);
+                                    hm.put("Delivery_name",Deliver_name);
+                                    hm.put("Delivery_phone_Number",Delivery_phone_Number);
+                                    hm.put("to_deliver_Uid",to_Delivery_Uid);
+                                    hm.put("from_pickup_Uid",Pickup_Uid);
+                                    hm.put("accepted_by","no");
+//                                    hm.setFrom_pickup_Uid(Pickup_Uid);
 //                                    hm.setTo_deliver_Uid(FirebaseAuth.getInstance().getUid());
 //                                    hm.setPick_up_name(Pick_up_name);
 //                                    hm.setPick_up_Phone_number(Pick_up_Phone_number);
 //                                    hm.setDelivery_name(Deliver_name);
 //                                    hm.setDelivery_location(Delivery_location);
 //                                    hm.setDelivery_phone_Number(Delivery_phone_Number);
-//                                    FirebaseDatabase.getInstance().getReference().child("Transport_Feed").setValue(hm);
+                                    FirebaseDatabase.getInstance().getReference().child("Transport_Feed").push().setValue(hm);
 
                                 }
                                 //Entering the post information into Transport branch in database when feed type is "Request"
 
                                 else {
-                                   // HashMap<String,Object> hm = new HashMap<>();
+                                    HashMap<String,Object> hm = new HashMap<>();
 
                                             Pick_up_location = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("Location").getValue().toString();
                                             Pick_up_name = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("Name").getValue().toString();
                                             Pick_up_Phone_number = dataSnapshot.child("UserDetails").child(FirebaseAuth.getInstance().getUid()).child("PhoneNumber").getValue().toString();
                                             Pickup_Uid = FirebaseAuth.getInstance().getUid();
                                             Delivery_location = dataSnapshot.child("Feed").child(feedId).child("location").getValue().toString();
-                                            hm.setDelivery_location(Delivery_location);
+                                           // hm.setDelivery_location(Delivery_location);
                                             to_Delivery_Uid = dataSnapshot.child("Feed").child(feedId).child("UserId").getValue().toString();
 
 
                                             Delivery_phone_Number = dataSnapshot.child("UserDetails").child(to_Delivery_Uid).child("PhoneNumber").getValue().toString();
                                             Deliver_name = dataSnapshot.child("UserDetails").child(to_Delivery_Uid).child("Name").getValue().toString();
-
-//                                    hm.put("Pick_up_location",Pick_up_location);
-//                                    hm.put("Pick_up_name",Pick_up_name);
-//                                    hm.put("Pick_up_Phone_Number",Pick_up_Phone_number);
-//                                    hm.put("Delivery_location",Delivery_location);
-//                                    hm.put("Delivery_name",Deliver_name);
-//                                    hm.put("Delivery_phone_Number",Delivery_phone_Number);
+                                    hm.put("FoodDescription",description_1);
+                                    hm.put("Pick_up_location",Pick_up_location);
+                                    hm.put("Pick_up_name",Pick_up_name);
+                                    hm.put("from_pickup_Uid",Pickup_Uid);
+                                    hm.put("Pick_up_Phone_Number",Pick_up_Phone_number);
+                                    hm.put("Delivery_location",Delivery_location);
+                                    hm.put("Delivery_name",Deliver_name);
+                                    hm.put("Delivery_phone_Number",Delivery_phone_Number);
+                                    hm.put("to_deliver_Uid",to_Delivery_Uid);
+                                    hm.put("accepted_by","no");
 //                                    hm.setFrom_pickup_Uid(FirebaseAuth.getInstance().getUid());
 //                                    hm.setTo_deliver_Uid(Delivery_phone_Uid);
 //                                    hm.setPick_up_name(Pick_up_name);
@@ -227,7 +236,7 @@ public class Detail_dialog extends AppCompatActivity {
 //                                    hm.setPick_up_Phone_number(Pick_up_Phone_number);
 //                                    hm.setDelivery_name(Deliver_name);
 //                                    hm.setDelivery_phone_Number(Delivery_phone_Number);
-//                                    FirebaseDatabase.getInstance().getReference().child("Transport_Feed").setValue(hm);
+                                    FirebaseDatabase.getInstance().getReference().child("Transport_Feed").push().setValue(hm);
                                 }
 
                             }
@@ -245,14 +254,16 @@ public class Detail_dialog extends AppCompatActivity {
 
                     //                   HomeViewModel hvm = new HomeViewModel();
 //                   hvm.setSelf_p_d(radioButtonText);
-                    hm.setFrom_pickup_Uid(Pickup_Uid);
-                    hm.setTo_deliver_Uid(to_Delivery_Uid);
-                    hm.setPick_up_name(Pick_up_name);
-                    hm.setPick_up_location(Pick_up_location);
-                    hm.setPick_up_Phone_number(Pick_up_Phone_number);
-                    hm.setDelivery_name(Deliver_name);
-                    hm.setDelivery_phone_Number(Delivery_phone_Number);
-                    FirebaseDatabase.getInstance().getReference().child("Transport_Feed").push().setValue(hm);
+
+//                    hm.setFrom_pickup_Uid(Pickup_Uid);
+//                    hm.setTo_deliver_Uid(to_Delivery_Uid);
+//                    hm.setPick_up_name(Pick_up_name);
+//                    hm.setPick_up_location(Pick_up_location);
+//                    hm.setPick_up_Phone_number(Pick_up_Phone_number);
+//                    hm.setDelivery_name(Deliver_name);
+//                    hm.setDelivery_phone_Number(Delivery_phone_Number);
+               //     FirebaseDatabase.getInstance().getReference().child("Transport_Feed").push().setValue(hm);
+//                    FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("delivery_accepted_by").setValue("no");
                     FirebaseDatabase.getInstance().getReference().child("Feed").child(feedId).child("feedAccepted").setValue(FirebaseAuth.getInstance().getUid());
                     Toast.makeText(Detail_dialog.this, "Accepted and Tranport feed Generated", Toast.LENGTH_SHORT).show();
 //                    Intent intent = new Intent(getBaseContext(), HomeFragment.class);
